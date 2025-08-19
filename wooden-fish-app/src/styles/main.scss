@@ -1,0 +1,328 @@
+// 禅意主题色彩变量
+:root {
+  // 主色调 - 木质色系
+  --color-wood-dark: #3e2723;
+  --color-wood-medium: #5d4037;
+  --color-wood-light: #8d6e63;
+  --color-wood-lighter: #bcaaa4;
+  
+  // 背景色系
+  --color-bg-primary: #f5f5dc; // 米色
+  --color-bg-secondary: #faf8f3;
+  --color-bg-card: rgba(255, 255, 255, 0.8);
+  
+  // 金色点缀
+  --color-gold: #ffd700;
+  --color-gold-light: #fff8dc;
+  --color-gold-dark: #b8860b;
+  
+  // 功能色
+  --color-success: #4caf50;
+  --color-warning: #ff9800;
+  --color-error: #f44336;
+  --color-info: #2196f3;
+  
+  // 文字色
+  --color-text-primary: #3e2723;
+  --color-text-secondary: #5d4037;
+  --color-text-muted: #8d6e63;
+  --color-text-light: #ffffff;
+  
+  // 阴影
+  --shadow-soft: 0 4px 20px rgba(62, 39, 35, 0.1);
+  --shadow-medium: 0 8px 30px rgba(62, 39, 35, 0.15);
+  --shadow-strong: 0 12px 40px rgba(62, 39, 35, 0.2);
+  
+  // 圆角
+  --radius-small: 8px;
+  --radius-medium: 16px;
+  --radius-large: 24px;
+  --radius-full: 50%;
+  
+  // 间距
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  
+  // 字体
+  --font-family-serif: 'Noto Serif SC', serif;
+  --font-family-sans: 'Inter', sans-serif;
+}
+
+// 暗黑主题
+[data-theme="dark"] {
+  --color-bg-primary: #1a1a1a;
+  --color-bg-secondary: #2d2d2d;
+  --color-bg-card: rgba(45, 45, 45, 0.8);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e0e0e0;
+  --color-text-muted: #b0b0b0;
+}
+
+// 全局样式重置
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+// 禅意动画效果
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-30px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.8);
+  }
+}
+
+.floating-text {
+  animation: floatUp 1.5s ease-out forwards;
+  pointer-events: none;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+// 木鱼锤完整敲击动画
+@keyframes hammerFullStrike {
+  // 初始状态 - 锤子在上方待命
+  0% {
+    transform: translate(-50%, -50%) translateY(-30px) rotate(-15deg) scale(0.9);
+    opacity: 0.8;
+  }
+  
+  // 抬起准备 - 锤子稍微上升
+  15% {
+    transform: translate(-50%, -50%) translateY(-40px) rotate(-20deg) scale(1);
+    opacity: 1;
+  }
+  
+  // 开始下落 - 加速度效果
+  25% {
+    transform: translate(-50%, -50%) translateY(-35px) rotate(-18deg) scale(1.05);
+    opacity: 1;
+  }
+  
+  // 快速下落
+  45% {
+    transform: translate(-50%, -50%) translateY(5px) rotate(0deg) scale(1.1);
+    opacity: 1;
+  }
+  
+  // 敲击瞬间 - 最大压缩
+  50% {
+    transform: translate(-50%, -50%) translateY(8px) rotate(2deg) scale(1.15);
+    opacity: 1;
+  }
+  
+  // 反弹开始
+  60% {
+    transform: translate(-50%, -50%) translateY(-5px) rotate(-3deg) scale(1.05);
+    opacity: 1;
+  }
+  
+  // 小幅震荡
+  70% {
+    transform: translate(-50%, -50%) translateY(-2px) rotate(-1deg) scale(1);
+    opacity: 1;
+  }
+  
+  // 回到待命位置
+  85% {
+    transform: translate(-50%, -50%) translateY(-25px) rotate(-12deg) scale(0.95);
+    opacity: 0.9;
+  }
+  
+  // 回到初始位置，保持可见
+  100% {
+    transform: translate(-50%, -50%) translateY(-30px) rotate(-15deg) scale(0.9);
+    opacity: 0.8;
+  }
+}
+
+// 锤子动画状态类 - 优化为300ms
+.hammer-animating {
+  animation: hammerFullStrike 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+// 木鱼震动动画 - 优化为300ms
+@keyframes woodenFishShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-2px) rotate(-0.5deg);
+  }
+  30% {
+    transform: translateX(2px) rotate(0.5deg);
+  }
+  45% {
+    transform: translateX(-1px) rotate(-0.3deg);
+  }
+  60% {
+    transform: translateX(1px) rotate(0.3deg);
+  }
+  75% {
+    transform: translateX(-0.5px) rotate(-0.1deg);
+  }
+  85% {
+    transform: translateX(0.5px) rotate(0.1deg);
+  }
+}
+
+// 木鱼区域隐藏默认鼠标指针，使用React组件锤子
+.wooden-fish-area {
+  cursor: none;
+}
+
+// 敲击时的震动效果类 - 优化为300ms
+.shake-animation {
+  animation: woodenFishShake 0.3s ease-out;
+}
+
+// 锤子敲击动画类
+.animate-hammer-strike {
+  animation: hammerStrike 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+// 工具类
+.zen-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.zen-card {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.zen-button {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  color: var(--color-wood-dark);
+  border: none;
+  border-radius: var(--radius-medium);
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.zen-text-title {
+  font-family: var(--font-family-serif);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-wood-dark);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.zen-text-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .zen-container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .zen-text-title {
+    font-size: 2rem;
+  }
+  
+  .zen-text-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .zen-text-title {
+    font-size: 1.75rem;
+  }
+  
+  .zen-text-subtitle {
+    font-size: 1rem;
+  }
+}
