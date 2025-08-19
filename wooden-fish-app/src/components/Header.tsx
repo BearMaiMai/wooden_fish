@@ -35,7 +35,7 @@ export default function Header() {
           {/* 左侧 - 标题和功德显示 */}
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold text-amber-700 dark:text-amber-400 font-serif">
-              电子木鱼
+              电子功德
             </h1>
             <div className="hidden sm:flex items-center space-x-2">
               <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">

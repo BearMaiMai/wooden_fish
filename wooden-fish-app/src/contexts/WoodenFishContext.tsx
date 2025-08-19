@@ -160,23 +160,52 @@ const WoodenFishContext = createContext<{
 
 // Provider组件
 export function WoodenFishProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(woodenFishReducer, initialState)
+  const [state, dispatch] = useReducer(woodenFishReducer, JSON.parse(localStorage.getItem('wooden-fish-state')||"") || initialState)
 
   // 本地存储
   useEffect(() => {
+    console.log('🔍 开始从localStorage加载数据...')
     const savedState = localStorage.getItem('wooden-fish-state')
+    console.log('📦 从localStorage读取的原始数据:', savedState)
+    
     if (savedState) {
       try {
         const parsedState = JSON.parse(savedState)
+        console.log('✅ 成功解析localStorage数据:', parsedState)
+        console.log('💰 加载的功德值:', parsedState.merit)
         dispatch({ type: 'LOAD_STATE', payload: parsedState })
+        console.log('🚀 已派发LOAD_STATE动作')
       } catch (error) {
-        console.error('Failed to load saved state:', error)
+        console.error('❌ 解析localStorage数据失败:', error)
       }
+    } else {
+      console.log('⚠️ localStorage中没有找到保存的数据')
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('wooden-fish-state', JSON.stringify(state))
+    console.log('💾 保存状态到localStorage...')
+    console.log('📊 当前状态:', {
+      merit: state.merit,
+      todayTaps: state.todayTaps,
+      combo: state.combo,
+      achievements: state.achievements.length
+    })
+    
+    try {
+      const stateToSave = JSON.stringify(state)
+      localStorage.setItem('wooden-fish-state', stateToSave)
+      console.log('✅ 状态已成功保存到localStorage')
+      
+      // 验证保存是否成功
+      const verification = localStorage.getItem('wooden-fish-state')
+      if (verification) {
+        const verifiedData = JSON.parse(verification)
+        console.log('🔍 验证保存结果 - 功德值:', verifiedData.merit)
+      }
+    } catch (error) {
+      console.error('❌ 保存状态到localStorage失败:', error)
+    }
   }, [state])
 
   // 自动更换禅语

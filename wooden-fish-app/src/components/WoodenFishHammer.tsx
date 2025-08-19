@@ -10,7 +10,7 @@ interface HammerProps {
 
 export default function WoodenFishHammer({ isVisible, position, isAnimating, onAnimationComplete }: HammerProps) {
   const hammerRef = useRef<HTMLDivElement>(null)
-  const [animationState, setAnimationState] = useState<'idle' | 'lifting' | 'striking' | 'completing'>('idle')
+  const [animationState, setAnimationState] = useState<'idle' | 'lifting' | 'striking' | 'completing'>('idle')// <“延迟”|“提升”|“击球”|“完成”>（“延迟”）
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // 防抖处理，确保动画完整执行
@@ -26,7 +26,7 @@ export default function WoodenFishHammer({ isVisible, position, isAnimating, onA
   }, [onAnimationComplete])
 
   useEffect(() => {
-    if (isAnimating && animationState === 'idle' && hammerRef.current) {
+    if (isAnimating && animationState === 'idle'&& hammerRef.current) {
       // 开始完整的敲击动画序列
       setAnimationState('striking')
       
@@ -40,13 +40,13 @@ export default function WoodenFishHammer({ isVisible, position, isAnimating, onA
       hammer.style.animation = 'hammerFullStrike 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards'
       
       // 动画完成回调 - 同步为300ms
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
+        console.log('敲击动画完成123')
         setAnimationState('completing')
         handleAnimationComplete()
       }, 300)
       
       return () => {
-        if (timeout) clearTimeout(timeout)
       }
     }
   }, [isAnimating, animationState, handleAnimationComplete])

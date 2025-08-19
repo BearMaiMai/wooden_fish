@@ -156,39 +156,9 @@ body {
     opacity: 0.8;
   }
   
-  // 抬起准备 - 锤子稍微上升
-  15% {
-    transform: translate(-50%, -50%) translateY(-40px) rotate(-20deg) scale(1);
-    opacity: 1;
-  }
-  
-  // 开始下落 - 加速度效果
-  25% {
-    transform: translate(-50%, -50%) translateY(-35px) rotate(-18deg) scale(1.05);
-    opacity: 1;
-  }
-  
-  // 快速下落
-  45% {
-    transform: translate(-50%, -50%) translateY(5px) rotate(0deg) scale(1.1);
-    opacity: 1;
-  }
-  
   // 敲击瞬间 - 最大压缩
   50% {
     transform: translate(-50%, -50%) translateY(8px) rotate(2deg) scale(1.15);
-    opacity: 1;
-  }
-  
-  // 反弹开始
-  60% {
-    transform: translate(-50%, -50%) translateY(-5px) rotate(-3deg) scale(1.05);
-    opacity: 1;
-  }
-  
-  // 小幅震荡
-  70% {
-    transform: translate(-50%, -50%) translateY(-2px) rotate(-1deg) scale(1);
     opacity: 1;
   }
   
