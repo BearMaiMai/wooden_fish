@@ -160,7 +160,7 @@ const WoodenFishContext = createContext<{
 
 // Provider组件
 export function WoodenFishProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(woodenFishReducer, JSON.parse(localStorage.getItem('wooden-fish-state')||"") || initialState)
+  const [state, dispatch] = useReducer(woodenFishReducer, initialState)
 
   // 本地存储
   useEffect(() => {

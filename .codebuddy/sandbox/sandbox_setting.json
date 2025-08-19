@@ -1,0 +1,20 @@
+{
+  "path": "c:\\Users\\ledgeMai\\CodeBuddy\\wooden_fish\\wooden-fish-app\\dist",
+  "desc": "电子木鱼禅意Web应用",
+  "id": "44a10144d63d4fcfb5814e376381619d",
+  "data": {
+    "spaceKey": "44a10144d63d4fcfb5814e376381619d",
+    "connections": {
+      "webIDE": "https://44a10144d63d4fcfb5814e376381619d.ap-singapore.cloudstudio.club",
+      "preview": "https://44a10144d63d4fcfb5814e376381619d--{port}.ap-singapore.cloudstudio.club",
+      "api": "https://44a10144d63d4fcfb5814e376381619d--api.ap-singapore.cloudstudio.club",
+      "pty": "https://44a10144d63d4fcfb5814e376381619d--pty.ap-singapore.cloudstudio.club"
+    }
+  },
+  "config": {
+    "api": "https://44a10144d63d4fcfb5814e376381619d--api.ap-singapore.cloudstudio.club",
+    "pty": "https://44a10144d63d4fcfb5814e376381619d--pty.ap-singapore.cloudstudio.club",
+    "region": "ap-shanghai",
+    "spaceKey": "44a10144d63d4fcfb5814e376381619d"
+  }
+}
