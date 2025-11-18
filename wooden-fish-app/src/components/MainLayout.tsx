@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useWoodenFish } from '../contexts/WoodenFishContext'
 import WoodenFishMain from './WoodenFishMain'
 import Header from './Header'
 import SidePanel from './SidePanel'
 import BottomControls from './BottomControls'
+import { ProfilePage } from './profile/ProfilePage'
 import { cn } from '../lib/utils'
+
+type CurrentView = 'main' | 'profile';
 
 export default function MainLayout() {
   const { state } = useWoodenFish()
+  const [currentView, setCurrentView] = useState<CurrentView>('main')
 
   return (
     <div 
@@ -27,23 +31,35 @@ export default function MainLayout() {
       {/* 主要内容区域 */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* 顶部导航 */}
-        <Header />
+        <Header 
+          currentView={currentView}
+          onViewChange={setCurrentView}
+        />
         
         {/* 主内容区 */}
         <main className="flex-1 flex">
-          {/* 侧边面板 - 桌面端显示 */}
-          <div className="hidden lg:block">
-            <SidePanel />
-          </div>
-          
-          {/* 中央木鱼区域 */}
-          <div className="flex-1 flex flex-col">
-            <WoodenFishMain />
-          </div>
+          {currentView === 'main' ? (
+            <>
+              {/* 侧边面板 - 桌面端显示 */}
+              <div className="hidden lg:block">
+                <SidePanel />
+              </div>
+              
+              {/* 中央木鱼区域 */}
+              <div className="flex-1 flex flex-col">
+                <WoodenFishMain />
+              </div>
+            </>
+          ) : (
+            /* 个人主页 */
+            <div className="flex-1">
+              <ProfilePage onBack={() => setCurrentView('main')} />
+            </div>
+          )}
         </main>
         
-        {/* 底部控制栏 */}
-        <BottomControls />
+        {/* 底部控制栏 - 只在主页面显示 */}
+        {currentView === 'main' && <BottomControls />}
       </div>
       
       {/* 冥想模式遮罩 */}

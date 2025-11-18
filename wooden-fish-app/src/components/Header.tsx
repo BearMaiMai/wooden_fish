@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useWoodenFish } from '../contexts/WoodenFishContext'
+import { useProfile } from '../contexts/ProfileContext'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { Slider } from './ui/slider'
@@ -12,11 +13,18 @@ import {
   Sun, 
   Menu,
   Trophy,
-  Heart
+  Heart,
+  User
 } from 'lucide-react'
 
-export default function Header() {
+interface HeaderProps {
+  currentView?: 'main' | 'profile';
+  onViewChange?: (view: 'main' | 'profile') => void;
+}
+
+export default function Header({ currentView = 'main', onViewChange }: HeaderProps) {
   const { state, dispatch } = useWoodenFish()
+  const { profile } = useProfile()
   const [showSettings, setShowSettings] = useState(false)
 
   const handleThemeToggle = () => {
@@ -34,7 +42,10 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* 左侧 - 标题和功德显示 */}
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold text-amber-700 dark:text-amber-400 font-serif">
+            <h1 
+              className="text-2xl font-bold text-amber-700 dark:text-amber-400 font-serif cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => onViewChange?.('main')}
+            >
               电子功德
             </h1>
             <div className="hidden sm:flex items-center space-x-2">
@@ -52,6 +63,20 @@ export default function Header() {
 
           {/* 右侧 - 控制按钮 */}
           <div className="flex items-center space-x-2">
+            {/* 个人主页按钮 */}
+            <Button
+              variant={currentView === 'profile' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => onViewChange?.('profile')}
+              className="hover:bg-amber-100 dark:hover:bg-amber-900"
+            >
+              <User className="w-4 h-4 mr-1" />
+              <span className="hidden sm:inline">
+                {profile ? profile.nickname : '个人主页'}
+              </span>
+              <span className="sm:hidden">档案</span>
+            </Button>
+
             {/* 成就数量 */}
             <div className="hidden md:flex items-center space-x-1 text-sm text-gray-600 dark:text-gray-400">
               <Trophy className="w-4 h-4" />
